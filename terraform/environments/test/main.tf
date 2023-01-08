@@ -52,3 +52,6 @@ module "publicip" {
   resource_type    = "publicip"
   resource_group   = "${module.resource_group.resource_group_name}"
 }
+module "vm" {
+  source           = "../../modules/vm"
+}
