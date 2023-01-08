@@ -11,6 +11,12 @@ resource "azurerm_network_interface" "" {
   }
 }
 
+data "azurerm_shared_image" "example" {
+  name                = "ubuntu"
+  gallery_name        = "Linux"
+  resource_group_name = "final-project"
+}
+
 resource "azurerm_linux_virtual_machine" "" {
   name                = "${var.application_type}-vm"
   location            = "${var.location}"
@@ -26,10 +32,5 @@ resource "azurerm_linux_virtual_machine" "" {
     caching           = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
-    version   = "latest"
-  }
+  source_image_id     = data.azurerm_shared_image.example.id
 }
