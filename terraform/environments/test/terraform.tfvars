@@ -6,7 +6,7 @@ tenant_id = "97d4f327-f603-4ef4-b5f5-1e90ce8da693"
 
 # Resource Group/Location
 location = "East US"
-resource_group_name = "final-project"
+resource_group_name = "final-proj"
 application_type = "myApplication"
 
 # Network
