@@ -101,7 +101,7 @@ stages:
   - deployment: VMDeploy
     displayName: Selenium Tests
     environment:
-      name:         archive-vm
+      name:         archive-env
       resourceType: VirtualMachine
       tags: selenium
     strategy:
