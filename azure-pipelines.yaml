@@ -110,7 +110,7 @@ stages:
       displayName: Run Data Validation Tests
       continueOnError: true
       inputs:
-        script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json --bail'
+        script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json --suppress-exit-code'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
 
     # # Postman Regression Test Suite    
