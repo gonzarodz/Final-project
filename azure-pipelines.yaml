@@ -127,7 +127,7 @@ stages:
     - task: PublishTestResults@2
       inputs:
         testResultsFormat: 'JUnit'
-        testResultsFiles: '**/TEST-*.xml'
+        testResultsFiles: '**/DataValidationTests.xml'
         searchFolder:       '$(System.DefaultWorkingDirectory)/Results/*.xml'
         mergeTestResults: true
         testRunTitle:       'PublishReport'
