@@ -84,15 +84,15 @@ stages:
         environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
 
 
-    # Destroy the resources in Azure
-    # ToDo: Change the workingDirectory path, as applicable to you
-    - task: TerraformTaskV3@3
-      displayName: Terraform destroy
-      inputs:
-        provider: 'azurerm'
-        command: 'destroy'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
-        environmentServiceNameAzureRM: '$(azureServiceConnectionId)'       
+    # # Destroy the resources in Azure
+    # # ToDo: Change the workingDirectory path, as applicable to you
+    # - task: TerraformTaskV3@3
+    #   displayName: Terraform destroy
+    #   inputs:
+    #     provider: 'azurerm'
+    #     command: 'destroy'
+    #     workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
+    #     environmentServiceNameAzureRM: '$(azureServiceConnectionId)'       
 
 
 #--------------------------------------------#    
@@ -112,14 +112,14 @@ stages:
       inputs:
         script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json'
 
-    # Postman Regression Test Suite    
-    # ToDo: Update the command and verify the working directory
-    - task: CmdLine@2
-      displayName: Run Regression Tests
-      continueOnError: true
-      inputs:
-        script:           # ToDo: Write your commands
-        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
+    # # Postman Regression Test Suite    
+    # # ToDo: Update the command and verify the working directory
+    # - task: CmdLine@2
+    #   displayName: Run Regression Tests
+    #   continueOnError: true
+    #   inputs:
+    #     script:           # ToDo: Write your commands
+    #     workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
         
 #     # Postman - Publish Results 
 #     # ToDo: Complete the task as explained here: https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=trx%2Cyaml#yaml-snippet
