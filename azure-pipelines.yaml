@@ -119,7 +119,7 @@ stages:
       displayName: Run Regression Tests
       continueOnError: true
       inputs:
-        script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json --suppress-exit-code --reporters cli,junit --reporter-junit-export Results/DataValidationTests.xml'
+        script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json --suppress-exit-code --reporters cli,junit --reporter-junit-export $(System.DefaultWorkingDirectory)/DataValidationTests.xml'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
         
     # Postman - Publish Results 
@@ -127,8 +127,8 @@ stages:
     - task: PublishTestResults@2
       inputs:
         testResultsFormat: 'JUnit'
-        testResultsFiles: '**/DataValidationTests.xml'
-        searchFolder:       '$(System.DefaultWorkingDirectory)/Results/*.xml'
+        testResultsFiles: 'DataValidationTests.xml'
+        searchFolder:       '$(System.DefaultWorkingDirectory)'
         mergeTestResults: true
         testRunTitle:       'PublishReport'
 
