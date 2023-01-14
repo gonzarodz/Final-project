@@ -113,14 +113,14 @@ stages:
         script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json --suppress-exit-code'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
 
-    # # Postman Regression Test Suite    
-    # # ToDo: Update the command and verify the working directory
-    # - task: CmdLine@2
-    #   displayName: Run Regression Tests
-    #   continueOnError: true
-    #   inputs:
-    #     script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json'
-    #     workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
+    # Postman Regression Test Suite    
+    # ToDo: Update the command and verify the working directory
+    - task: CmdLine@2
+      displayName: Run Regression Tests
+      continueOnError: true
+      inputs:
+        script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json --suppress-exit-code --reporters cli,junit --reporter-junit-export Results/DataValidationTests.xml'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
         
     # Postman - Publish Results 
     # ToDo: Complete the task as explained here: https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=trx%2Cyaml#yaml-snippet
@@ -128,9 +128,9 @@ stages:
       inputs:
         testResultsFormat: 'JUnit'
         testResultsFiles: '**/TEST-*.xml'
-        searchFolder:       '$(System.DefaultWorkingDirectory)/'
+        searchFolder:       '$(System.DefaultWorkingDirectory)/Results/*.xml'
         mergeTestResults: true
-        testRunTitle:       # ToDo
+        testRunTitle:       'PublishReport'
 
 #     #--------------------------------------------#
 #     # Selenium (UI) Test Suite - Archive the package  
