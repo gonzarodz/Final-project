@@ -95,30 +95,32 @@ stages:
         environmentServiceNameAzureRM: '$(azureServiceConnectionId)'       
 
 
-# #--------------------------------------------#    
-#     # Postman - Install Newman    
-#     # ToDo: Update the command and verify the working directory
-#     - task: CmdLine@2
-#       displayName: Install Newman
-#       inputs:
-#         script:           # ToDo: Write your commands to install newman
-#         workingDirectory: $(System.DefaultWorkingDirectory)
-#     # Postman Data Validation Test Suite    
-#     # ToDo: Verify the working directory and the newman scripts
-#     - task: CmdLine@2
-#       displayName: Run Data Validation Tests
-#       continueOnError: true
-#       inputs:
-#         script:           # ToDo: Write your commands
-#         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
-#     # Postman Regression Test Suite    
-#     # ToDo: Update the command and verify the working directory
-#     - task: CmdLine@2
-#       displayName: Run Regression Tests
-#       continueOnError: true
-#       inputs:
-#         script:           # ToDo: Write your commands
-#         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
+#--------------------------------------------#    
+    # Postman - Install Newman    
+    # ToDo: Update the command and verify the working directory
+    - task: CmdLine@2
+      displayName: Install Newman
+      inputs:
+        script:           'npm install -g newman'
+        workingDirectory: $(System.DefaultWorkingDirectory)
+
+    # Postman Data Validation Test Suite    
+    # ToDo: Verify the working directory and the newman scripts
+    - task: CmdLine@2
+      displayName: Run Data Validation Tests
+      continueOnError: true
+      inputs:
+        script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json'
+
+    # Postman Regression Test Suite    
+    # ToDo: Update the command and verify the working directory
+    - task: CmdLine@2
+      displayName: Run Regression Tests
+      continueOnError: true
+      inputs:
+        script:           # ToDo: Write your commands
+        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
+        
 #     # Postman - Publish Results 
 #     # ToDo: Complete the task as explained here: https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=trx%2Cyaml#yaml-snippet
 #     - task: PublishTestResults@2
