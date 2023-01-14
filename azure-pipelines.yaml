@@ -110,27 +110,27 @@ stages:
       displayName: Run Data Validation Tests
       continueOnError: true
       inputs:
-        script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json'
+        script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json --bail'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
 
-    # Postman Regression Test Suite    
-    # ToDo: Update the command and verify the working directory
-    - task: CmdLine@2
-      displayName: Run Regression Tests
-      continueOnError: true
-      inputs:
-        script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
+    # # Postman Regression Test Suite    
+    # # ToDo: Update the command and verify the working directory
+    # - task: CmdLine@2
+    #   displayName: Run Regression Tests
+    #   continueOnError: true
+    #   inputs:
+    #     script:           'newman run $(System.DefaultWorkingDirectory)/automatedtesting/postman/StarterAPIs.json'
+    #     workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
         
-#     # Postman - Publish Results 
-#     # ToDo: Complete the task as explained here: https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=trx%2Cyaml#yaml-snippet
-#     - task: PublishTestResults@2
-#       inputs:
-#         testResultsFormat: 'JUnit'
-#         testResultsFiles: '**/TEST-*.xml'
-#         searchFolder:       $(System.DefaultWorkingDirectory)
-#         mergeTestResults: true
-#         testRunTitle:       # ToDo
+    # Postman - Publish Results 
+    # ToDo: Complete the task as explained here: https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=trx%2Cyaml#yaml-snippet
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/TEST-*.xml'
+        searchFolder:       '$(System.DefaultWorkingDirectory)/'
+        mergeTestResults: true
+        testRunTitle:       # ToDo
 
 #     #--------------------------------------------#
 #     # Selenium (UI) Test Suite - Archive the package  
