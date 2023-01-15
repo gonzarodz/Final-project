@@ -199,7 +199,7 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App'
             inputs:
-              azureSubscription: 'd10556ae-ae0e-4fa8-8ea9-4bddb33248b8'
+              azureSubscription: 'service-connection'
               appName: 'udacityFakeAPI'
               appType: 'webApp'
               package: '$(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip'
